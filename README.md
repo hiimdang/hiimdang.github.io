@@ -1,2 +1,1 @@
-# hiimdang.github.io
-Nhìn gì vậy trùi ui
+[my website](https://hiimdang.github.io/hiimdang)
