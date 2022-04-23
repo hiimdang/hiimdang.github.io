@@ -1,5 +1,5 @@
 function init() {
-  
+   
     let autoscroll = null
     let timer
   
