@@ -1,1 +1,1 @@
-[my website](https://hiimdang.github.io/hiimdang)
+[Click here](https://hiimdang.github.io/hiimdang)
