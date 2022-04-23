@@ -209,7 +209,7 @@ function init() {
    
     const hoverTextEffect = () =>{
       title.innerHTML = ''
-      triggerShuffle(title, 'Kaakou the HoneyKuma', 4)
+      triggerShuffle(title, 'kaakou the honeykuma', 4)
     }
   
   
