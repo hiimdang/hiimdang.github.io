@@ -142,7 +142,7 @@ function init() {
       return arr
     }
     
-    //* adjust trigger point?
+
     const triggerIndicatorChange = ()=>{
       pageBoundaries().forEach((ele,i)=>{
         if (!windowDivs[i + 1]){
@@ -176,7 +176,7 @@ function init() {
       windowDivs[index].classList.remove('display')
     }
   
-    //* scramble related
+
     const random = '*&%!1234567ABC'
     let interval
   
