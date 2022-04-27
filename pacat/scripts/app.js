@@ -1,8 +1,4 @@
 
-
-//! if you can't click page, you need to disable cover
-
-
 function init() {
 
 
@@ -74,7 +70,7 @@ function init() {
     const buttonWrapper = document.querySelector('.button_wrapper')
     // const twitterBox = document.querySelector('.tweetbox')
   
-    //* touch
+    //* cham
     const arrowWrapper = document.querySelector('.arrow_wrapper')
     const touchModeControl = document.querySelector('.touch_control')
     const left = document.querySelector('.left')
@@ -85,11 +81,11 @@ function init() {
     const pauseInstruction = document.querySelector('#pause_instruction')
     // const linkWrapper = document.querySelector('.link')
   
-    //* status display
+    //* trang thai hien thi
     const scoreDisplay = document.querySelector('.score')
     const scoreDisplayWrapper = document.querySelector('.score_wrapper')
     let score = 0
-    let gameStatus = 'play'  //!for pause setting.
+    let gameStatus = 'play'  //!dung settings
     let gameSound = 'on'
     let touchMode = 'off'
     let invincibilityTimer = 0
@@ -98,7 +94,7 @@ function init() {
   
     
   
-    // * Variables
+    // * bien
     const width = 40
     const height = 40
     const cellCount = width * height
@@ -122,9 +118,9 @@ function init() {
         itemTotal += item.cellsWithItem.length
       })
     }
-    setItemTotal() //! sets item total based on items in itemObjects
+    setItemTotal() //! set tong items dua tren items trong itemObjects
   
-    let itemToCollect = itemTotal  //! ensure this is called after setItemTotal
+    let itemToCollect = itemTotal  
     let blueStarCollected = 0
     
     //* actors
@@ -171,9 +167,9 @@ function init() {
         verticalPosition: null,
         motionInterval: null,
         defaultStatus: 'inactive',
-        status: 'inactive',  //* determines if cpu is in motion or not 
+        status: 'inactive',  //* xac dinh xem la cpu co chuyen dong hay ko
         knockOutAnimationDisplay: null,
-        moodRange: ['scatter_A','aggressive_A','aggressive_B','aggressive_C','wander_A','wander_B','aggressive_D'],    //* determine chase behaviour
+        moodRange: ['scatter_A','aggressive_A','aggressive_B','aggressive_C','wander_A','wander_B','aggressive_D'],    //* xac dinh hanh vi duoi theo hay ko
         mood: 'scatter',
         moodTimer: 0,
         recoveryInterval: null,
@@ -309,12 +305,12 @@ function init() {
       }
     ]
     
-    function setActorPosition(actor){                   // resets horizontal and vertical position of cpu or player
+    function setActorPosition(actor){                   // dat vi tri ngang va doc cua cpu hoac player
       actor.horizontalPosition = actor.position % width
       actor.verticalPosition = Math.floor(actor.position / width)
     }
     
-    //* determine cpu's mood depending on counter
+    //* xac dinh mood cua cpu dua vao counter
     function moodTimerCount(){
       cpuObjects.forEach(cpu =>{
         if (cpu.status !== 'inactive'){
@@ -456,13 +452,13 @@ function init() {
   
   
     function triggerGameStart(){
-      if (!gameStartCover.classList.contains('display')){   // prevents start button being pressed again once game is already in play
+      if (!gameStartCover.classList.contains('display')){   // Ngan nhan nut start 2 lan
         return
       }
       playSoundEffect('nalalala.wav',playerAudio)
       countDown()
   
-      setInterval(()=>{   //* readjusts actor display sizes incase player resizes window
+      setInterval(()=>{   //* Dieu chinh kich thuoc hien thi khi cua so thay doi kich thuoc
         reAdjustActorSize(player)
     
         cpuObjects.forEach(cpu =>{
@@ -495,10 +491,10 @@ function init() {
   
     function constantActions(){
       
-      //* checking for status
+      //* checking status
   
       constantCheckDespitePause = setInterval(() =>{
-        rePositionAllActorImages() // this is to ensure player image stays in right place 
+        rePositionAllActorImages() // Dam bao hinh anh phat dung vi tri
       },10)
       
       constantCheck = setInterval(() =>{
@@ -523,7 +519,7 @@ function init() {
       blueStarCollected = 0
     }
   
-    function countDown(){  // count down circle animation when game starts and resets
+    function countDown(){  
   
       
   
@@ -575,12 +571,12 @@ function init() {
     }
     
   
-    //! triggering each cpu's motion could be a separate function?
+    
     function initialiseCpus(cpuObjects){
       cpuObjects.forEach(cpu => {
         cpu.position = cpu.defaultPosition 
         cpu.status = cpu.defaultStatus
-        cpu.display.className = 'cpuClass' //removes any class aquired in previous play
+        cpu.display.className = 'cpuClass' //Loai bo moi class trong lan choi truoc
         clearInterval(cpu.motionInterval) 
         
         displayActorImage(cpu)
@@ -635,7 +631,7 @@ function init() {
   
     function turnPlayerInvincible(){
       player.display.classList.add('invincible')
-      clearInterval(invincibilityInterval) //* clears any old interval
+      clearInterval(invincibilityInterval) //* Xoa thoi gian cu
   
       invincibilityInterval = setInterval(
         function(){
@@ -647,7 +643,7 @@ function init() {
             // console.log(`counting invincibility Timer${invincibilityTimer}`)
           } else {
             player.display.classList.remove('invincible')
-            player.staticGif = `${player.facingDirection}.gif`  // change back to normal appearance
+            player.staticGif = `${player.facingDirection}.gif`  // Dua lai ve player binh thuong
             player.display.innerHTML = `<img src = "./assets/${player.staticGif}" ></img>` 
             knockOutCpuCounter = 1
             invincibilityTimer = 0
@@ -678,18 +674,18 @@ function init() {
   
       setTimeout(() =>{
         cover.removeChild(cpu.knockOutAnimationDisplay)
-        animateSparkle(cpu)  //* creates a star that floats back to default position
+        animateSparkle(cpu)  //* Tao ngoi sao noi tro lai vi tri mac dinh
         playSoundEffect('ahh.wav',cpuAudio)
         scoreDisplay.innerHTML = score
         scoreDisplayWrapper.classList.add('animate')
       },1000)
   
-      setTimeout(() =>{                     // animate score board
+      setTimeout(() =>{                     // animate bang diem so
         scoreDisplayWrapper.classList.remove('animate')
       },1200)
   
       setTimeout(() =>{
-        // returns cpu to default position, but harmless until hidden class is removed
+        // dua cpu ve vi tri mac dinh, ho hai den khi loai bo lop an
         removeActor(cpu)
       },5000)
   
@@ -697,7 +693,7 @@ function init() {
         cpu.position = cpu.defaultPosition
   
         addActor(cpu)
-        displayActorImage(cpu) //syncs actor image with actual position
+        displayActorImage(cpu) //dong bo hinh anh voi vi tri
         cpu.display.classList.remove('hidden')
         cpu.display.classList.add('fadein')
       },7000)
@@ -727,14 +723,14 @@ function init() {
   
   
     function changeStatusToActive(cpu){
-      if (itemToCollect > 0 && !cpu.display.classList.contains('fadein')){  //* this added to ensure cpus do not recover when game is already complete, and also prevents controlCpu's activate actions.
+      if (itemToCollect > 0 && !cpu.display.classList.contains('fadein')){  //* ngan khong cho cpu hoi sinh khi game da hoan thanh
         cpu.status = 'active'
       }
     }
   
   
     
-    function animateSparkle(cpu){  //this is the sparkle that appears when cpu is defeated
+    function animateSparkle(cpu){  //Nay la anh sang hien len khi cpu bi giet
       cpu.knockOutAnimationDisplay = document.createElement('div')
       cpu.knockOutAnimationDisplay.classList.add('effect_animation_slow')
       cpu.knockOutAnimationDisplay.innerHTML = '<img src = "./assets/sparkle.gif" ></img>'      
@@ -820,12 +816,12 @@ function init() {
     }
     
     function displayKnockOutAnimation(actor){
-      actor.display.classList.add('hidden')     // stops actor and prevents further playerLoseLife
+      actor.display.classList.add('hidden')     
   
       // if (actor.knockOutAnimationDisplay !== null){
       //   cover.removeChild(actor.knockOutAnimationDisplay)
       //   actor.knockOutAnimationDisplay = null
-      // }   //! this fix seems to make player disappear in very fast collision, so removed.
+      // }   //! cai nay lam cho player bien mat khi di chuyen nhanh =))) nen xoa no di
     
   
       actor.knockOutAnimationDisplay = document.createElement('div')  // displays hurt animation
@@ -858,7 +854,7 @@ function init() {
       },800)
       
       setTimeout(function(){
-        cover.removeChild(player.knockOutAnimationDisplay) //* fixed to ensure the knockOutAnimation is removed
+        cover.removeChild(player.knockOutAnimationDisplay) 
         player.knockOutAnimationDisplay = null
   
         const lifeDisplayAnimation = document.createElement('div')
@@ -876,7 +872,7 @@ function init() {
           lifeDisplay.removeChild(lifeCounters[lifeCounters.length - 1])
         },100)
   
-        setTimeout(function(){  // move player life image to where the player was
+        setTimeout(function(){ 
           lifeDisplayAnimation.style.top = `${currentPlayerCell.y}px`
           lifeDisplayAnimation.style.left = `${currentPlayerCell.x}px`
         },200)
@@ -887,7 +883,7 @@ function init() {
           displayPlayerLife()
           displayActorImage(player)
           player.display.classList.remove('hidden') 
-          player.display.classList.add('flicker')    // make player flicker state for a duration
+          player.display.classList.add('flicker')  
   
           flickerInterval = setInterval(
             function(){
@@ -945,7 +941,7 @@ function init() {
       // console.log('test1')
   
       // if (itemToCollect > 0 && player.life > 0 
-      if (!gameEndCover.classList.contains('shade')) {  // prevents unwanted resets when reset button is accidentally pressed by space bar
+      if (!gameEndCover.classList.contains('shade')) {  // Ngan viec dat lai neu an nham vao dau cach
         return
       }
   
@@ -953,16 +949,16 @@ function init() {
   
       playSoundEffect('nalalala.wav',playerAudio)
       
-      cover.innerHTML = ''  // wipe cover to remove actor images
-      document.querySelector('.game_end_text').innerHTML = ''  // gameEnd message delete
+      cover.innerHTML = ''  
+      document.querySelector('.game_end_text').innerHTML = ''  
       playAgainButton.classList.remove('display')
-      gameEndCover.classList.remove('shade') // hide game over message
+      gameEndCover.classList.remove('shade') 
       score = 0
       clearInterval(moodInterval)
       clearInterval(constantCheck)
       clearInterval(constantCheckDespitePause)
   
-      clearInterval(invincibilityInterval)     //*remove various class attached in prior play
+      clearInterval(invincibilityInterval)     
       clearInterval(flickerInterval)
       invincibilityTimer = 0
       flickerTimer = 0
@@ -971,7 +967,7 @@ function init() {
   
       itemToCollect = itemTotal
       scoreDisplay.innerHTML = score
-      player.life = player.defaultLife   // reset player life total
+      player.life = player.defaultLife   // reset player life
       displayPlayerLife()
   
       populateItems()
@@ -980,8 +976,7 @@ function init() {
   
       setTimeout(() =>{
   
-        //! control how enemies start to move?
-        cpuObjects.forEach(cpu =>{  // remove old position before reinitialising
+        cpuObjects.forEach(cpu =>{  // Xoa vi tri cu truoc khi bat dau lai
           removeActor(cpu)
           cpu.moodTimer = 0
           clearInterval(cpu.recoveryInterval)
@@ -1008,8 +1003,7 @@ function init() {
   
   
     
-    // * Make walls
-    // walls defined by adding class to cells, according to what is mentioned in the array
+    // * Make wall
   
     function populateCells(array,classToAdd){
       for (let i = 0; i < array.length ; i++) {
@@ -1033,15 +1027,14 @@ function init() {
   
   
   
-    //* Animation displaying image on page based on movement in the grid
   
   
     function displayActorImage(actor){
       actor.display.classList.add('effect_animation_fast')
-      if (actor !== player) {  //* syncing actor's speed with it's speed (only for cpu)
+      if (actor !== player) { 
         actor.display.style.transition = `${actor.speed / 1000}s`
       }
-      if (actor !== player && actor.speed >= 300) { //* ensure transition is atleast 0.3 however slow 
+      if (actor !== player && actor.speed >= 300) { 
         actor.display.style.transition = '0.3s' 
       }
   
@@ -1157,7 +1150,7 @@ function init() {
     }
   
   
-    //* cpu movement
+    //* chuyen dong cua cpu
   
     function cpuMovementDecision(cpu){
   
@@ -1195,31 +1188,31 @@ function init() {
       //   cpu.motion = ['right','left','up']
       // }
       
-      //* when facing right or left and wall is on facing direction
+
       if ((cpu.facingDirection === 'right' && isElementInFacingDirection(cpu,'wall')) || (cpu.facingDirection === 'left' && isElementInFacingDirection(cpu,'wall'))){
         cpu.motion = ['up','down']
       }
   
-      //* when facing down or up and wall is on facing direction
+
       if ((cpu.facingDirection === 'down' && isElementInFacingDirection(cpu,'wall')) || (cpu.facingDirection === 'up' && isElementInFacingDirection(cpu,'wall'))){
         cpu.motion = ['left','right']
       }
       
-      //! below possibly not necessary, but maybe useful when running away from player?
-      if (isElementAbove(cpu,'wall') && isElementOnRightOf(cpu,'wall')){  // when wall at top and right
+
+      if (isElementAbove(cpu,'wall') && isElementOnRightOf(cpu,'wall')){  // wall tren va phai
         cpu.motion = ['down','left']
       } 
-      if (isElementAbove(cpu,'wall') && isElementOnLeftOf(cpu,'wall')){  // when wall at top and left
+      if (isElementAbove(cpu,'wall') && isElementOnLeftOf(cpu,'wall')){  // wall top va trai
         cpu.motion = ['right','down']
       }
-      if (isElementBelow(cpu,'wall') && isElementOnRightOf(cpu,'wall')){  // when wall at bottom and right
+      if (isElementBelow(cpu,'wall') && isElementOnRightOf(cpu,'wall')){  // wall giua va phai
         cpu.motion = ['up','left']
       }
-      if (isElementBelow(cpu,'wall') && isElementOnLeftOf(cpu,'wall')){   // when wall at bottom and left
+      if (isElementBelow(cpu,'wall') && isElementOnLeftOf(cpu,'wall')){   // wall duoi va trai
         cpu.motion = ['up','right']
       }
       
-      if (player.display.classList.contains('invincible')){ //* run away from player
+      if (player.display.classList.contains('invincible')){ //* cpu chay khoi nguoi choi
         avoidTarget(cpu)
         resetCpuSpeed(cpu)
         return
@@ -1236,7 +1229,7 @@ function init() {
   
   
     function chaseTarget(cpu){
-      if (cpu.horizontalPosition < cpu.target[0]){  //* movement based on target position
+      if (cpu.horizontalPosition < cpu.target[0]){  
         cpu.motion.push('right')
         cpu.motion.push('right')
       } else {
@@ -1289,8 +1282,8 @@ function init() {
       }
   
   
-      //* motion added to go in the opposite direction of player
-      if (cpu.horizontalPosition > player.horizontalPosition){  //* movement based on target position
+
+      if (cpu.horizontalPosition > player.horizontalPosition){ 
         cpu.motion.push('right')
       } else {
         cpu.motion.push('left')
@@ -1323,8 +1316,7 @@ function init() {
   
     
   
-    //! this might be called from object or array if CPUs shared similar function
-    //! this may potentially be renamed cpuOneMovement... 
+
   
     //* Move cpu
     function cpuMovement(cpu) {
@@ -1365,7 +1357,7 @@ function init() {
     }
     
    
-    //* player related motions
+
   
   
   
@@ -1373,12 +1365,12 @@ function init() {
     function addActor(actor) {  
       cells[actor.position].classList.add(actor.class)
       setActorPosition(actor)
-      actor.display.style.zIndex = actor.verticalPosition   //* corrects the overlap
+      actor.display.style.zIndex = actor.verticalPosition   
     }
   
   
     function takeItemAndEarnScore(itemObject){
-      if (player.display.classList.contains('flicker')){ // prevents player taking item when in flicker state
+      if (player.display.classList.contains('flicker')){ 
         return
       }
       
@@ -1387,7 +1379,7 @@ function init() {
         
         playSoundEffect(itemObject.sound,playerAudio)
         
-        //animate items when taken
+
         const currentPlayerPosition = outerCells[player.position].getBoundingClientRect()
         
         const itemTaken = document.createElement('div')
@@ -1402,7 +1394,7 @@ function init() {
         setTimeout(function(){
           itemTaken.style.top = `${scoreDisplay.getBoundingClientRect().y}px`
           itemTaken.style.left = `${scoreDisplay.getBoundingClientRect().x}px`
-          itemToCollect -= 1  //* moved this to make game judge faster?
+          itemToCollect -= 1  
         },100)
   
         setTimeout(function(){
@@ -1416,7 +1408,7 @@ function init() {
           }
         },1000)
   
-        setTimeout(function(){ // animate score board
+        setTimeout(function(){ 
           scoreDisplayWrapper.classList.remove('animate')
         },1200)
   
@@ -1445,7 +1437,7 @@ function init() {
     //* teleport
   
     function teleport(actor){
-      //! possibly make the time taken for ghost to return slower, but maybe later.
+
   
       actor.display.classList.add('hidden')
       actor.position = cellsWithTeleportExit[cellsWithTeleport.indexOf(actor.position)]
@@ -1519,7 +1511,7 @@ function init() {
       }
   
       if (outerCells[player.position].classList.contains('blue_star') && !player.display.classList.contains('flicker')){
-        blueStarCollected += 1  //* count blue star collected
+        blueStarCollected += 1  //* dem blue star da duoc collect
       }
   
       itemObjects.forEach(itemObject =>{
@@ -1560,7 +1552,7 @@ function init() {
     }
   
     function turnPlayer(keyPressed){
-      //! prevents player image disappearing when wrong key is pressed.
+    
       if (keyPressed !== 'ArrowLeft' && keyPressed !== 'ArrowRight' && keyPressed !== 'ArrowUp' && keyPressed !== 'ArrowDown' && keyPressed !== 'left' && keyPressed !== 'up' && keyPressed !== 'right' && keyPressed !== 'down'){
         return
       }
@@ -1621,7 +1613,7 @@ function init() {
       handleMovement('down')
     }
   
-    //* only used during development
+ 
     function printPosition(){
       playerPositionDisplay.innerHTML = `${player.position} Horizontal:${player.horizontalPosition} Vertical:${player.verticalPosition} item left:${itemToCollect} blueStar collected:${blueStarCollected}`
       wallPositionDisplay.innerHTML = `${cellsWithWalls}`
@@ -1644,7 +1636,7 @@ function init() {
   window.addEventListener('DOMContentLoaded', init)
   
   
-  //! redundant code
+
   
   // function playSoundEffect(sound){
   //   if (gameSound === 'on'){
@@ -1660,7 +1652,7 @@ function init() {
   //   }
   // }
   
-  // function addCpu(cpu) {  // * Add cpu to grid
+  // function addCpu(cpu) {  
   //   cells[cpu.position].classList.add(cpu.class)
   //   setActorPosition(cpu)
   // }
@@ -1704,7 +1696,7 @@ function init() {
   //   }
   
   //   if (outerCells[player.position].classList.contains('blue_star') && !player.display.classList.contains('flicker')){
-  //     blueStarCollected += 1  //* count blue star collected
+  //     blueStarCollected += 1  
   //   }
   
   //   itemObjects.forEach(itemObject =>{
