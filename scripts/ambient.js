@@ -45,7 +45,7 @@ function init() {
   
     const imagesOne = [
       {
-        file: 'catblob.png',
+        file: 'title.svg',
         width: 250,
         height: 250,
         speed: 24,
@@ -203,6 +203,7 @@ function init() {
     ]
     
     
+    // ./assets/catblob.png
     const imageSlides = document.querySelectorAll('.project_image_wrapper')
   
     const imgNums = {
