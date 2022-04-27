@@ -1,5 +1,5 @@
 
-/*! Z-index altered to make it possible to click grid, put it back later! */
+
 
 
 * {
@@ -140,7 +140,7 @@
     width: 100%;
   }
   
-  /*!! may be come necessart in the future*/
+
   .cell.cpuClass {
     background-color: transparent;
   }
@@ -884,7 +884,7 @@
   
   
   
-  /* backend stuff */
+  /* backend  */
   
   .indicater{
     position:fixed;
@@ -894,7 +894,7 @@
     padding:20px;
   }
   
-  /* for development, to be changed to*/
+
   /* .cell.player_down {
     background-color: lightblue;
     
