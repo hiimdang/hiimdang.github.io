@@ -1,5 +1,5 @@
 function init() {
-  
+   
     const ambient = document.querySelector('.ambient')
     
     // ambient.style.backgroundColor = 'red'
