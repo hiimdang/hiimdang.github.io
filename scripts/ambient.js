@@ -203,7 +203,6 @@ function init() {
     ]
     
     
-    // ./assets/catblob.png
     const imageSlides = document.querySelectorAll('.project_image_wrapper')
   
     const imgNums = {
