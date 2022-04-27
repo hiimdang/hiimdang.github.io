@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/main.css">
+  <script src ="./scripts/app.js" charset="utf-8"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+    </style>
+  <title>Cat Blob</title>
+</head>
+<body>
+  <audio id="player_audio"></audio>
+  <audio id="cpu_audio"></audio>
+
+
+  <div class="game_start_cover display">
+    <div class="game_start_wrapper">
+      <div class="game_start_inner">
+        <div>
+          <img src='./assets/title.svg' alt = 'title image with cat blob being chased by dog blobs'>
+        </div>
+        <nav>
+          <p>Use arrow keys to collect stars &amp; avoid dogs. Press spacebar to pause. For smartphones, turn touch mode on to display direction and pause button.</p>
+          <button id="start" class ='display'>start game!</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="pause_cover">
+    <p>pause</p>
+    <p id="pause_instruction">(press spacebar to resume game)</p>
+  </div>
+
+  <div class="game_end_cover">
+    <div class="game_end_text_wrapper">
+      <p class="game_end_text"></p>
+    </div>
+    <nav>
+      <button id="play_again">
+        play again?
+      </button>
+      <!-- <div class="tweetbox display">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="masahitoart" data-size="large" data-hashtags="catblob">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        </div>
+      removed until cookie issue is resolved
+      -->
+    </nav>
+  </div>
+
+  <div class="cover"></div>
+
+  <header class="status">
+    <div class="life_wrapper">
+      <p>life:</p><div id="life" class ="life"></div>
+    </div>
+    <div class="score_outer_wrapper">
+      <p class="score_wrapper">score: <span class="score">0</span></p>
+    </div>
+  </header>
+
+  <main class="grid_outer_wrapper">
+    <div class="grid_inner_wrapper">
+        <div class="grid"></div>
+    </div>
+
+    <div class="arrow_wrapper">
+      <div>
+        <div class="left"><img src= "./assets/arrow_left.svg" alt="left arrow"></div>
+        <div class="middle_arrows">
+          <div class="up"><img src= "./assets/arrow_up.svg" alt="up arrow"></div>
+          <div class="down"><img src= "./assets/arrow_down.svg" alt="down arrow"></div>
+        </div>
+        <div class="right"><img src= "./assets/arrow_right.svg" alt="right arrow"></div> 
+      </div>
+    </div>
+
+  </main>
+  
+  <div class="indicater">
+    <p>player position:<span id='player_position'></span></p>
+    <p>cpu one position:<span id='cpu_one_position'></span></p>
+    <p>cpu Two position:<span id='cpu_two_position'></span></p>
+    <p>walls:<span id='wall_position'></span></p>
+    <p>items:<span id='item_position'></span></p>
+
+    <!-- <p>player position:<span class='player position'></span></p> -->
+  </div>
+  
+  <div class="button_wrapper">
+    <div class="sound_control">sound: ON</div>
+    <div class="touch_control off">touch mode: OFF</div>
+    <div class="link"><a href= "https://fb.com/hiimdangg" target="blank"> fb.com/hiimdangg</a></div>
+  </div>
+
+  <div class="pause_button">pause</div>
+
+</body>
+</html>
