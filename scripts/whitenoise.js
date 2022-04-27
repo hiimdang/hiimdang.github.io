@@ -28,7 +28,7 @@ function init() {
         
       let toggle = true;
         
-      // added toggle to get 30 FPS instead of 60 FPS
+      // add toggle de co dc 30 fps thay vi 60
       (function loop() {
         toggle = !toggle
         if (toggle) {
