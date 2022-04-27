@@ -6,7 +6,7 @@ function init() {
   
   
     const sparkle = e =>{
-      if (Math.random() > 1 / 3) return  // making the sparkle appear one in three time
+      if (Math.random() > 1 / 3) return  
   
       // pos.innerText = `x:${e.clientX} / y:${e.clientY}`
   
